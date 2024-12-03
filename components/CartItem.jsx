@@ -9,7 +9,7 @@ function StoreItem({name, description, price, amount, setAmount}) {
                 {/* <Text style={{fontSize: 12}}>{description}</Text> */}
             {/* </View> */}
             <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
-                <Text>{price * amount} ₽</Text>
+                <Text>{(price * amount).toFixed(2)} ₽</Text>
                 <View style={styles.buttons}>
                     <Button title='-' onPress={() => setAmount(Math.max(amount - 1, 0))} />
                     <Text>{amount}</Text>
