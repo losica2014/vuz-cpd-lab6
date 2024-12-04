@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Animated, useAnimatedValue, Easing } from 'react-native';
 
 export default function CatalogItem({name, description, price, amount, setAmount, isStoredForLater, setIsStoredForLater}) {
@@ -16,7 +16,7 @@ export default function CatalogItem({name, description, price, amount, setAmount
                 <Text>{(price * amount).toFixed(2)} ₽</Text>
                 <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
                     <Button title='-' onPress={() => {
-                        if(amount - 1 > 1) Animated.timing(
+                        if(amount - 1 >= 1) Animated.timing(
                             anim,
                             {
                                 toValue: 0,
@@ -29,7 +29,7 @@ export default function CatalogItem({name, description, price, amount, setAmount
                     }} />
                     <Text>{amount}</Text>
                     <Button title='+' onPress={() => {
-                        if(amount + 1 > 1) Animated.timing(
+                        if(amount + 1 >= 1) Animated.timing(
                             anim,
                             {
                                 toValue: 0,
@@ -48,7 +48,7 @@ export default function CatalogItem({name, description, price, amount, setAmount
                         anim,
                         {
                             toValue: !isStoredForLater ? 70 : 0,
-                            duration: 150,
+                            duration: 300,
                             useNativeDriver: true
                         }
                     ).start()
@@ -65,9 +65,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         borderColor: '#ccc',
-        // width: 300,
-        // flexGrow: 1,
-        flex: 1,
         gap: 10
     },
     buttons: {

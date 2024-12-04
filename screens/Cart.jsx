@@ -8,7 +8,6 @@ import { CartContext, CartManagerContext } from '../data/cart';
 const coefs = {'free': 0, '50': 0.5};
 
 export default function Cart() {
-    // const [cart, setCart] = useState({'1': 10});
     const cart = useContext(CartContext);
     const setCart = useContext(CartManagerContext);
 
@@ -17,7 +16,7 @@ export default function Cart() {
     const removeItem = (id) => setCart({...cart, items: Object.fromEntries(Object.entries(cart.items).filter((item) => item[0] !== id))});
 
     return (
-        <View style={styles.container}>
+        <View>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Корзина</Text>
             <ScrollView>
                 {Object.entries(cart.items).map(([key, value]) => <StoreItem key={key} {...catalog[key]} amount={value} setAmount={amount => amount > 0 ? setCart({...cart, items: {...cart.items, [key]: amount}}) : removeItem(key)} />)}
@@ -33,11 +32,5 @@ export default function Cart() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-    //   flex: 1,
-    //   backgroundColor: '#fff',
-      // alignItems: 'center',
-      // justifyContent: 'center',
-    //   padding: 20
-    },
+    
 });

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { CatalogContext } from "../data/catalog";
 import { CartContext, CartManagerContext } from "../data/cart";
 import CatalogItem from "../components/CatalogItem";
@@ -17,7 +17,7 @@ export default function Catalog() {
     return (
         <View style={styles.container}>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Каталог</Text>
-            <View style={{gap: 10, display: "flex", flexWrap: "wrap", flexDirection: "row"}}>
+            <ScrollView>
                 {Object.entries(catalog).map(([key, value]) => <CatalogItem
                     key={key}
                     {...value}
@@ -28,7 +28,7 @@ export default function Catalog() {
                     isStoredForLater={later.includes(key)}
                     setIsStoredForLater={(v) => setIsStoredForLater(key, v)}
                 />)}
-            </View>
+            </ScrollView>
         </View>
     );
 
@@ -40,6 +40,6 @@ export default function Catalog() {
 
 const styles = StyleSheet.create({
     container: {
-        gap: 10
+        gap: 10,
     }
 });

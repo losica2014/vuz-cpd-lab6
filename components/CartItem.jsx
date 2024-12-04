@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-function StoreItem({name, description, price, amount, setAmount}) {
+function StoreItem({name, price, amount, setAmount}) {
     return (
         <View style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 20}}>
-            {/* <View style={{flexDirection: 'column'}}> */}
-                <Text style={{fontSize: 16}}>{name}</Text>
-                {/* <Text style={{fontSize: 12}}>{description}</Text> */}
-            {/* </View> */}
+            <Text style={{fontSize: 16}}>{name}</Text>
             <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
                 <Text>{(price * amount).toFixed(2)} ₽</Text>
                 <View style={styles.buttons}>
@@ -28,6 +25,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         borderColor: '#ccc',
+        gap: 5
     },
 });
 
