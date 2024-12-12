@@ -8,6 +8,7 @@ import Catalog from './screens/Catalog';
 import { CartContext, CartManagerContext } from './data/cart';
 import { LaterStoreContext, LaterStoreManagerContext } from './data/later';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Orders from './screens/Orders';
 
 export default function App() {
   const [cart, setCart] = useState({'items': {'1': 10}, 'promo': null});
@@ -38,10 +39,12 @@ export default function App() {
                   <View style={styles.container}>
                     {page === 'catalog' && <Catalog />}
                     {page === 'cart' && <Cart />}
+                    {page === 'orders' && <Orders />}
                   </View>
                   <View style={{gap: 10, display: "flex", flexWrap: "wrap", flexDirection: "row", marginTop: 20, padding: 10, borderTopWidth: 1}}>
                     <Button title="Каталог" onPress={() => setPage('catalog')} />
                     <Button title="Корзина" onPress={() => setPage('cart')} />
+                    <Button title="Заказы" onPress={() => setPage('orders')} />
                   </View>
                 </LaterStoreManagerContext.Provider>
               </LaterStoreContext.Provider>
