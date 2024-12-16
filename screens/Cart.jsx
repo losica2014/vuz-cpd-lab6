@@ -5,6 +5,7 @@ import StoreItem from '../components/CartItem';
 import { CatalogContext } from '../data/catalog';
 import { CartContext, CartManagerContext } from '../data/cart';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import MapView, { Marker } from 'react-native-maps';
 
 
 const coefs = {'free': 0, '50': 0.5};
@@ -15,6 +16,7 @@ export default function Cart() {
 
     const [coords, setCoords] = useState({lat: 0, long: 0});
     const [date, setDate] = useState(new Date());
+    const [showDatePicker, setShowDatePicker] = useState(false);
 
     const catalog = useContext(CatalogContext);
 
@@ -58,9 +60,15 @@ export default function Cart() {
             <View style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={{fontSize: 16}}>Адрес: {coords.lat} {coords.long}</Text>
             </View>
-            <View style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{fontSize: 16}}>Дата доставки: </Text>
-                <DateTimePicker value={date} mode='date' onChange={(event, selectedDate) => selectedDate && setDate(selectedDate)} />
+            <MapView style={{width: '100%', height: 200}}
+                initialRegion={{latitude: coords.lat, longitude: coords.long, latitudeDelta: 0.1, longitudeDelta: 0.1}}
+                onPress={event => setCoords({...coords, lat: event.nativeEvent.coordinate.latitude, long: event.nativeEvent.coordinate.longitude})}>
+                <Marker coordinate={{latitude: coords.lat, longitude: coords.long}} />        
+            </MapView>
+            <View style={{padding: 10}}>
+                <Text style={{fontSize: 16}}>Дата доставки: {date.toLocaleString()}</Text>
+                <Button title='Выбрать дату' onPress={() => setShowDatePicker(true)} />
+                {showDatePicker && <DateTimePicker value={date} mode='date' onChange={(event, selectedDate) => {setDate(selectedDate); setShowDatePicker(false)}} />}
             </View>
             <View style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
                 <Button title='Оформить заказ' onPress={placeOrder} />

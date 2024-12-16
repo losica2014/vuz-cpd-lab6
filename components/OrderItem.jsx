@@ -12,10 +12,12 @@ export default function OrderItem({id, total, amount, remove}) {
 
     return (
         <View style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 20}}>
-            <Text style={{fontSize: 16}}>Заказ №{id} на {date.toLocaleString()}</Text>
-            <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
+            <View>
+                <Text style={{fontSize: 16}}>Заказ №{id} на {date.toLocaleDateString()}</Text>
                 <Text>{(total).toFixed(2)} ₽</Text>
                 <Text>{amount} шт.</Text>
+            </View>
+            <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
                 <View style={styles.buttons}>
                     <Button title='X' onPress={remove} />
                 </View>
