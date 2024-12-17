@@ -38,12 +38,12 @@ export default function Cart() {
     }
 
     return (
-        <View>
+        <ScrollView>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Корзина</Text>
-            <ScrollView>
+            <View>
                 {Object.entries(cart.items).map(([key, value]) => <StoreItem key={key} {...catalog[key]} amount={value} setAmount={amount => amount > 0 ? setCart({...cart, items: {...cart.items, [key]: amount}}) : removeItem(key)} />)}
                 {Object.entries(cart.items).length === 0 && <Text style={{fontSize: 16, marginVertical: 20}}>Корзина пуста</Text>}
-            </ScrollView>
+            </View>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Итого: {(Object.entries(cart.items).reduce((total, [key, value]) => total + value * catalog[key].price, 0) * (coefs[cart.promo] ?? 1)).toFixed(2)} ₽</Text>
             <View style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={{fontSize: 16}}>Скидка: {(1 - (coefs[cart.promo] ?? 1)) * 100}%</Text>
@@ -73,7 +73,7 @@ export default function Cart() {
             <View style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
                 <Button title='Оформить заказ' onPress={placeOrder} />
             </View>
-        </View>
+        </ScrollView>
     );
 }
 

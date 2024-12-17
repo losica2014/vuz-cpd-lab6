@@ -41,7 +41,7 @@ export default function App() {
                     {page === 'cart' && <Cart />}
                     {page === 'orders' && <Orders />}
                   </View>
-                  <View style={{gap: 10, display: "flex", flexWrap: "wrap", flexDirection: "row", marginTop: 20, padding: 10, borderTopWidth: 1}}>
+                  <View style={{gap: 10, display: "flex", flexWrap: "wrap", flexDirection: "row", marginTop: 20, padding: 10, borderTopWidth: 1, backgroundColor: "#ffffff"}}>
                     <Button title="Каталог" onPress={() => setPage('catalog')} />
                     <Button title="Корзина" onPress={() => setPage('cart')} />
                     <Button title="Заказы" onPress={() => setPage('orders')} />
